@@ -188,8 +188,10 @@
     </div>
 
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwt3sLDMcLs4N7_Jah-ajM9sXfH2u7fuc7VER2RW_0rIwxpknw5YTNm06Itxl-QAmraWw/exec";
-        const DEADLINE_DATE = new Date(2026, 2, 11, 15, 0, 0);
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzLOeIxekpxZuDOm3TRHoOjk0f8pMZ3YuCXHQsu7J54IagSWj-FpEr1ufBUGn9X-Dfrhw/exec";
+        
+        // Perbaikan: Bulan Februari adalah indeks 1 (Jan=0, Feb=1)
+        const DEADLINE_DATE = new Date(2026, 1, 11, 15, 0, 0);
 
         const mapelOptions = {
             "SD/MI": ["Guru Kelas 4", "Guru Kelas 5", "Guru Kelas 6"],
@@ -240,8 +242,6 @@
             const formData = new FormData(form);
             
             try {
-                // Menggunakan mode 'no-cors' bisa membuat response kosong, tapi data tetap terkirim.
-                // Namun untuk menangkap pesan error duplikasi dari script kita, kita coba mode default.
                 const response = await fetch(SCRIPT_URL, { 
                     method: 'POST', 
                     body: formData
@@ -257,10 +257,9 @@
                     showStatus(result.error || "Gagal menyimpan data.", "bg-red-100 text-red-700");
                 }
             } catch (error) {
-                // Perbaikan: Jangan langsung anggap sukses jika catch error.
-                // Cek apakah error karena CORS tapi data mungkin masuk
                 console.error(error);
-                showStatus("Terjadi gangguan koneksi atau konfigurasi server. Jika Anda yakin belum mendaftar, silakan hubungi admin.", "bg-red-100 text-red-700");
+                // Jika error JSON parse biasanya karena script mengembalikan HTML error (CORS)
+                showStatus("Terjadi kesalahan teknis. Pastikan Anda belum pernah mendaftar dengan Email atau No HP yang sama.", "bg-red-100 text-red-700");
             } finally {
                 loading.style.display = 'none';
             }
