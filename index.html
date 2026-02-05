@@ -12,6 +12,12 @@
         .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
         .question-label { font-size: 1.05rem; font-weight: 700; color: #1e40af; display: flex; align-items: center; margin-bottom: 0.5rem; transition: color 0.3s ease; }
         .input-group:focus-within .question-label { color: #2563eb; }
+        
+        /* CSS Khusus untuk mengecilkan placeholder */
+        input::placeholder { font-size: 0.85rem; opacity: 0.7; }
+        select { font-size: 0.85rem; }
+        select option { font-size: 1rem; }
+
         .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #ffffff; border-radius: 50%; width: 16px; height: 16px; animation: spin 1s linear infinite; display: inline-block; margin-right: 8px; vertical-align: middle; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.5em; }
@@ -19,6 +25,7 @@
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 md:p-8">
     <div class="max-w-lg w-full glass-card rounded-3xl shadow-2xl overflow-hidden transition-all duration-500">
+        <!-- Header -->
         <div class="relative h-48 bg-blue-700 flex flex-col justify-center items-center text-white p-6 overflow-hidden text-center">
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600 rounded-full opacity-50"></div>
             <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-800 rounded-full opacity-50"></div>
@@ -34,54 +41,58 @@
                 </div>
             </div>
         </div>
+
         <div class="h-1 w-full bg-gray-100"><div id="progressBar" class="h-full bg-blue-600 transition-all duration-500" style="width: 0%"></div></div>
+        
         <div class="p-8">
-            <!-- Alert Penutupan -->
             <div id="closedMessage" class="hidden text-center py-6 bg-red-50 border border-red-200 rounded-2xl mb-6">
                 <i data-lucide="lock" class="w-12 h-12 text-red-500 mx-auto mb-3"></i>
                 <h3 class="text-lg font-bold text-red-700">Pendaftaran Ditutup</h3>
-                <p class="text-sm text-red-600 px-4 mt-1">Sesuai ketentuan, pendaftaran telah berakhir pada tanggal 11 Februari 2026 pukul 20.00 WIB.</p>
+                <p class="text-sm text-red-600 px-4 mt-1">Maaf, pendaftaran telah berakhir pada batas waktu yang ditentukan.</p>
             </div>
 
             <form id="registrationForm" class="space-y-6">
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="user" class="w-5 h-5 mr-2"></i> Nama Lengkap</label>
-                    <input type="text" name="Nama" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Contoh: Budi Santoso, S.Kom">
+                    <input type="text" name="Nama" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" placeholder="Contoh: Budi Santoso, S.Kom">
                 </div>
 
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="fingerprint" class="w-5 h-5 mr-2"></i> NIP</label>
                     <input type="text" name="NIP" required 
-                        pattern="^(\d{8}\s\d{6}\s\d{1}\s\d{3}|-)$"
-                        title="Format: 19800101 200501 1 001 atau tanda - jika tidak memiliki NIP"
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
-                        placeholder="19800101 200501 1 001 atau -">
-                    <p class="text-[10px] text-gray-500 mt-1 ml-1 italic">*Gunakan aturan penulisan NIP, bagi yang tidak memiliki diisi tanda -</p>
+                        pattern="^(\d{18}|-)$"
+                        maxlength="18"
+                        title="Masukkan 18 digit angka NIP tanpa spasi atau tanda - jika tidak memiliki NIP"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" 
+                        placeholder="198001012005011001 atau -">
+                    <!-- Teks bantuan diperbarui sesuai permintaan -->
+                    <p class="text-[10px] text-gray-500 mt-1 ml-1 italic">*Tulis 18 digit angka tanpa spasi, bagi yang tidak memiliki NIP isi dengan tanda "-"</p>
                 </div>
 
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="mail" class="w-5 h-5 mr-2"></i> Alamat Email</label>
-                    <input type="email" name="Email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="nama@email.com">
+                    <input type="email" name="Email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" placeholder="nama@email.com">
                 </div>
+
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="building" class="w-5 h-5 mr-2"></i> Sekolah/Instansi</label>
-                    <input type="text" name="Instansi" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Nama sekolah/instansi">
+                    <input type="text" name="Instansi" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" placeholder="Nama sekolah/instansi">
                 </div>
                 
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="graduation-cap" class="w-5 h-5 mr-2"></i> Jenjang</label>
-                    <select id="jenjangSelect" name="Jenjang" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700">
+                    <select id="jenjangSelect" name="Jenjang" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-500">
                         <option value="" disabled selected>Pilih Jenjang...</option>
-                        <option value="SD/MI">SD / MI</option>
-                        <option value="SMP/MTs">SMP / MTs</option>
-                        <option value="SMA/SMK/MA">SMA / SMK / MA</option>
-                        <option value="Lainnya">Lainnya</option>
+                        <option value="SD/MI" class="text-gray-800">SD / MI</option>
+                        <option value="SMP/MTs" class="text-gray-800">SMP / MTs</option>
+                        <option value="SMA/SMK/MA" class="text-gray-800">SMA / SMK / MA</option>
+                        <option value="Lainnya" class="text-gray-800">Lainnya</option>
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="book-open" class="w-5 h-5 mr-2"></i> Mengajar</label>
-                    <select id="mengajarSelect" name="Mengajar" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700">
+                    <select id="mengajarSelect" name="Mengajar" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-500">
                         <option value="" disabled selected>Pilih Jenjang Terlebih Dahulu...</option>
                     </select>
                 </div>
@@ -89,16 +100,17 @@
                 <div class="input-group">
                     <label class="question-label"><i data-lucide="phone" class="w-5 h-5 mr-2"></i> Nomor WhatsApp</label>
                     <div class="relative">
-                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 font-bold border-r border-gray-300 pr-2">+62</span>
-                        <input type="tel" name="Nomor_WA" required class="w-full pl-16 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="8123456789">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 font-bold border-r border-gray-300 pr-2 text-sm">+62</span>
+                        <input type="tel" name="Nomor_WA" required class="w-full pl-16 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" placeholder="8123456789">
                     </div>
                 </div>
+
                 <button type="submit" id="submitBtn" class="group relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg active:scale-[0.98] overflow-hidden">
-                    <span id="btnText" class="relative z-10 flex items-center justify-center">Daftar Webinar Sekarang <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i></span>
+                    <span id="btnText" class="relative z-10 flex items-center justify-center text-sm md:text-base">Daftar Webinar Sekarang <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i></span>
                 </button>
             </form>
 
-            <!-- Tampilan Setelah Berhasil dengan Link WhatsApp yang Diperbarui -->
+            <!-- Tampilan Setelah Berhasil -->
             <div id="messageBox" class="hidden py-6 text-center animate-in fade-in zoom-in duration-500">
                 <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-6 shadow-inner">
                     <i data-lucide="check-circle-2" class="w-10 h-10"></i>
@@ -106,7 +118,6 @@
                 <h2 class="text-2xl font-bold text-gray-800">Pendaftaran Berhasil!</h2>
                 <p class="text-gray-600 mt-3 leading-relaxed">Terima kasih telah mendaftar. Silakan bergabung ke grup koordinasi untuk informasi lebih lanjut:</p>
                 
-                <!-- Box Informasi Link WhatsApp -->
                 <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-2xl">
                     <p class="text-sm font-bold text-blue-800 mb-3 flex items-center justify-center">
                         <i data-lucide="link" class="w-4 h-4 mr-2"></i> Grup WhatsApp Peserta
@@ -126,6 +137,7 @@
         </div>
         <div class="px-8 pb-8 text-center"><p class="text-xs text-gray-400 italic">© 2026 Matematika Nusantara - Cilacap</p></div>
     </div>
+
     <script>
         lucide.createIcons();
 
@@ -140,15 +152,24 @@
         };
 
         jenjangSelect.addEventListener('change', function() {
+            this.classList.remove('text-gray-500');
+            this.classList.add('text-gray-800');
             const selectedJenjang = this.value;
             const options = teachingData[selectedJenjang] || [];
             mengajarSelect.innerHTML = '<option value="" disabled selected>Pilih Kriteria Mengajar...</option>';
+            mengajarSelect.classList.add('text-gray-500');
             options.forEach(opt => {
                 const newOption = document.createElement('option');
                 newOption.value = opt;
                 newOption.textContent = opt;
+                newOption.className = "text-gray-800";
                 mengajarSelect.appendChild(newOption);
             });
+        });
+
+        mengajarSelect.addEventListener('change', function() {
+            this.classList.remove('text-gray-500');
+            this.classList.add('text-gray-800');
         });
 
         const DEADLINE_DATE = new Date('2026-02-11T20:00:00+07:00');
