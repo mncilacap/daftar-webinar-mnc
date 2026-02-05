@@ -3,272 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulir Pendaftaran</title>
+    <title>Pendaftaran Webinar MNC 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body {
-            background-color: #f0ebf8;
-            font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-        }
-        .form-wrapper {
-            width: 100%;
-            max-width: 640px;
-        }
-        .form-header-container {
-            width: 100%;
-            height: auto;
-            background-color: #ffffff; 
-            border-radius: 8px 8px 0 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .form-header-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .header-divider {
-            height: 4px;
-            background-color: #1a73e8;
-            width: 100%;
-        }
-        .google-card {
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #dadce0;
-            margin-bottom: 12px;
-            padding: 24px;
-            position: relative;
-        }
-        .header-card {
-            padding: 0;
-            border-top: 10px solid #1a73e8;
-            overflow: hidden;
-        }
-        .header-content {
-            padding: 24px;
-        }
-        .header-card h1 {
-            font-size: 28px;
-            font-weight: 800; 
-            text-transform: uppercase; 
-            margin-bottom: 12px;
-            color: #1a73e8;
-        }
-        .question-label {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a73e8;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .required-star {
-            color: #d93025;
-        }
-        input, select {
-            width: 100%;
-            border: none;
-            border-bottom: 1px solid #dadce0;
-            padding: 8px 0;
-            font-size: 14px;
-            background: transparent;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-bottom: 2px solid #1a73e8;
-        }
-        .submit-btn {
-            background-color: #1a73e8;
-            color: white;
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none;
-        }
-        .loading-spinner {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255,255,255,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #e0e7ff 0%, #f3f4f6 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .question-label { font-size: 1.05rem; font-weight: 700; color: #1e40af; display: flex; align-items: center; margin-bottom: 0.5rem; transition: color 0.3s ease; }
+        .input-group:focus-within .question-label { color: #2563eb; }
+        .loading-spinner { border: 2px solid #f3f3f3; border-top: 2px solid #ffffff; border-radius: 50%; width: 16px; height: 16px; animation: spin 1s linear infinite; display: inline-block; margin-right: 8px; vertical-align: middle; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.5em; }
     </style>
 </head>
-<body>
-
-    <div id="loading" class="loading-spinner">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-700"></div>
-        <p class="mt-4 text-blue-900 font-medium">Sedang memproses...</p>
-    </div>
-
-    <div class="form-wrapper" id="mainContainer">
-        <div class="google-card header-card">
-            <div class="form-header-container">
-                <img src="https://i.postimg.cc/P5vS2xtV/Matematika-Nusantara.png" alt="Header" class="form-header-image">
-            </div>
-            <div class="header-divider"></div>
-            <div class="header-content">
-                <h1>FORMULIR PENDAFTARAN</h1>
-                <p class="text-base text-gray-700 mb-2">
-                    Silakan lengkapi formulir di bawah ini dengan benar untuk dapat mengikuti kegiatan webinar <b>Game Edukasi Matematika.</b>
-                </p>
-                <p class="text-base text-gray-700">
-                    Formulir akan ditutup pada tanggal <span class="text-red-600 font-bold">11 Pebruari 2026 pukul 15.00 WIB</span>
-                </p>
-                <hr class="my-4">
-                <p class="text-sm text-red-600">* Menunjukkan pertanyaan yang wajib diisi</p>
+<body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+    <div class="max-w-lg w-full glass-card rounded-3xl shadow-2xl overflow-hidden transition-all duration-500">
+        <div class="relative h-48 bg-blue-700 flex flex-col justify-center items-center text-white p-6 overflow-hidden text-center">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600 rounded-full opacity-50"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-blue-800 rounded-full opacity-50"></div>
+            <div class="relative z-10 w-full px-2">
+                <span class="bg-blue-500 text-[10px] md:text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Webinar Series</span>
+                <h1 class="text-xl md:text-2xl font-extrabold mt-2 leading-tight uppercase">Matematika Nusantara Cilacap 2026</h1>
+                <p class="text-blue-100 text-sm mt-1 opacity-90 font-medium tracking-wide italic">Game Edukasi Matematika</p>
+                <div class="mt-4 px-4 py-2 bg-blue-800/40 rounded-lg border border-blue-400/30 backdrop-blur-sm mx-auto max-w-sm">
+                    <p class="text-[10px] md:text-sm text-yellow-300 font-semibold flex items-center justify-center">
+                        <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                        Pendaftaran ditutup pada tanggal 11 Februari 2026 pukul 20.00 WIB
+                    </p>
+                </div>
             </div>
         </div>
-
-        <form id="guruForm">
-            <div class="google-card">
-                <label class="question-label">Nama (Lengkap dengan Gelar) <span class="required-star">*</span></label>
-                <input type="text" name="nama_lengkap" placeholder="Jawaban Anda" required>
+        <div class="h-1 w-full bg-gray-100"><div id="progressBar" class="h-full bg-blue-600 transition-all duration-500" style="width: 0%"></div></div>
+        <div class="p-8">
+            <!-- Alert Penutupan -->
+            <div id="closedMessage" class="hidden text-center py-6 bg-red-50 border border-red-200 rounded-2xl mb-6">
+                <i data-lucide="lock" class="w-12 h-12 text-red-500 mx-auto mb-3"></i>
+                <h3 class="text-lg font-bold text-red-700">Pendaftaran Ditutup</h3>
+                <p class="text-sm text-red-600 px-4 mt-1">Sesuai ketentuan, pendaftaran telah berakhir pada tanggal 11 Februari 2026 pukul 20.00 WIB.</p>
             </div>
 
-            <div class="google-card">
-                <label class="question-label">Email <span class="required-star">*</span></label>
-                <input type="email" name="email" placeholder="Jawaban Anda" required>
-            </div>
-
-            <div class="google-card">
-                <label class="question-label">Tempat dan Tanggal Lahir <span class="required-star">*</span></label>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="tempat_lahir" placeholder="Tempat Lahir" required>
-                    <input type="date" id="tgl_lahir" required>
+            <form id="registrationForm" class="space-y-6">
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="user" class="w-5 h-5 mr-2"></i> Nama Lengkap</label>
+                    <input type="text" name="Nama" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Contoh: Budi Santoso, S.Kom">
                 </div>
-                <input type="hidden" name="tempat_tanggal_lahir" id="gabungan_ttl">
-            </div>
 
-            <div class="google-card">
-                <label class="question-label">Nama Sekolah/Instansi <span class="required-star">*</span></label>
-                <input type="text" name="nama_sekolah" placeholder="Jawaban Anda" required>
-            </div>
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="fingerprint" class="w-5 h-5 mr-2"></i> NIP</label>
+                    <input type="text" name="NIP" required 
+                        pattern="^(\d{8}\s\d{6}\s\d{1}\s\d{3}|-)$"
+                        title="Format: 19800101 200501 1 001 atau tanda - jika tidak memiliki NIP"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" 
+                        placeholder="19800101 200501 1 001 atau -">
+                    <p class="text-[10px] text-gray-500 mt-1 ml-1 italic">*Gunakan spasi atau tanda -</p>
+                </div>
 
-            <div class="google-card">
-                <label class="question-label">Jenjang <span class="required-star">*</span></label>
-                <select id="jenjang" name="jenjang" required onchange="updateMapel()">
-                    <option value="" disabled selected>Pilih Jenjang</option>
-                    <option value="SD/MI">SD/MI</option>
-                    <option value="SMP/MTs">SMP/MTs</option>
-                    <option value="SMA/SMK/MA">SMA/SMK/MA</option>
-                    <option value="Lainnya">Lainnya</option>
-                </select>
-            </div>
-
-            <div class="google-card">
-                <label class="question-label">Mata Pelajaran <span class="required-star">*</span></label>
-                <select id="mapel" name="mata_pelajaran" required disabled>
-                    <option value="" disabled selected>Pilih Mata Pelajaran</option>
-                </select>
-            </div>
-
-            <div class="google-card">
-                <label class="question-label">No HP / WhatsApp <span class="required-star">*</span></label>
-                <input type="text" name="no_hp" id="no_hp" placeholder="Contoh: 62812345678" pattern="62[0-9]{9,15}" title="Gunakan format 62 diawal" required>
-                <p class="text-sm text-gray-500 mt-2">Format: 628xxxxxxxx (Gunakan 62)</p>
-            </div>
-
-            <div class="flex items-center justify-between mb-10">
-                <button type="submit" id="submitBtn" class="submit-btn">Kirim</button>
-                <button type="reset" class="text-blue-700 text-sm font-medium">Kosongkan formulir</button>
-            </div>
-
-            <div id="statusMsg" class="hidden p-4 rounded mb-10 text-center font-medium"></div>
-        </form>
-    </div>
-
-    <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyHdZtL80TY7ifuJFtYKlXAO5a00XEnfBG8oztNxsX99ioTs3zWOCTbY1Wbi1hOGj_4gA/exec";
-        
-        // Perbaikan: Bulan Februari adalah indeks 1 (Jan=0, Feb=1)
-        const DEADLINE_DATE = new Date(2026, 1, 11, 15, 0, 0);
-
-        const mapelOptions = {
-            "SD/MI": ["Guru Kelas 4", "Guru Kelas 5", "Guru Kelas 6"],
-            "SMP/MTs": ["Guru Matematika Kelas 7", "Guru Matematika Kelas 8", "Guru Matematika Kelas 9"],
-            "SMA/SMK/MA": ["Guru Matematika Kelas 10", "Guru Matematika Kelas 11", "Guru Matematika Kelas 12"],
-            "Lainnya": ["-"]
-        };
-
-        function updateMapel() {
-            const jenjang = document.getElementById('jenjang').value;
-            const mapelSelect = document.getElementById('mapel');
-            mapelSelect.innerHTML = '<option value="" disabled selected>Pilih Mata Pelajaran</option>';
-            if (mapelOptions[jenjang]) {
-                mapelSelect.disabled = false;
-                mapelOptions[jenjang].forEach(item => {
-                    let opt = document.createElement('option');
-                    opt.value = item;
-                    opt.innerHTML = item;
-                    mapelSelect.appendChild(opt);
-                });
-                if (jenjang === "Lainnya") mapelSelect.value = "-";
-            }
-        }
-
-        window.onload = () => {
-            const now = new Date();
-            if (now > DEADLINE_DATE) {
-                document.getElementById('mainContainer').innerHTML = `<div class="google-card text-center py-10"><h2 class="text-2xl font-bold text-red-600">PENDAFTARAN DITUTUP</h2></div>`;
-                return;
-            }
-            if (localStorage.getItem('formSubmitted')) {
-                document.getElementById('guruForm').innerHTML = `<div class="google-card text-center py-10"><h2 class="text-xl font-bold text-gray-800">Anda sudah mengirimkan tanggapan untuk formulir ini.</h2></div>`;
-            }
-        };
-
-        const form = document.getElementById('guruForm');
-        const loading = document.getElementById('loading');
-        const statusMsg = document.getElementById('statusMsg');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const tempat = document.getElementById('tempat_lahir').value;
-            const tgl = document.getElementById('tgl_lahir').value;
-            document.getElementById('gabungan_ttl').value = `${tempat}, ${tgl}`;
-
-            loading.style.display = 'flex';
-            const formData = new FormData(form);
-            
-            try {
-                const response = await fetch(SCRIPT_URL, { 
-                    method: 'POST', 
-                    body: formData
-                });
-
-                const result = await response.json();
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="mail" class="w-5 h-5 mr-2"></i> Alamat Email</label>
+                    <input type="email" name="Email" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="nama@email.com">
+                </div>
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="building" class="w-5 h-5 mr-2"></i> Sekolah/Instansi</label>
+                    <input type="text" name="Instansi" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="Nama sekolah/instansi">
+                </div>
                 
-                if (result.result === 'success') {
-                    localStorage.setItem('formSubmitted', 'true');
-                    showStatus("Pendaftaran berhasil! Terima kasih.", "bg-blue-100 text-blue-700");
-                    setTimeout(() => window.location.reload(), 3000);
-                } else {
-                    showStatus(result.error || "Gagal menyimpan data.", "bg-red-100 text-red-700");
-                }
-            } catch (error) {
-                console.error(error);
-                showStatus("Terjadi kesalahan teknis. Pastikan Anda belum pernah mendaftar dengan Email atau No HP yang sama.", "bg-red-100 text-red-700");
-            } finally {
-                loading.style.display = 'none';
-            }
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="graduation-cap" class="w-5 h-5 mr-2"></i> Jenjang</label>
+                    <select id="jenjangSelect" name="Jenjang" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700">
+                        <option value="" disabled selected>Pilih Jenjang...</option>
+                        <option value="SD/MI">SD / MI</option>
+                        <option value="SMP/MTs">SMP / MTs</option>
+                        <option value="SMA/SMK/MA">SMA / SMK / MA</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="book-open" class="w-5 h-5 mr-2"></i> Mengajar</label>
+                    <select id="mengajarSelect" name="Mengajar" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-gray-700">
+                        <option value="" disabled selected>Pilih Jenjang Terlebih Dahulu...</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label class="question-label"><i data-lucide="phone" class="w-5 h-5 mr-2"></i> Nomor WhatsApp</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600 font-bold border-r border-gray-300 pr-2">+62</span>
+                        <input type="tel" name="Nomor_WA" required class="w-full pl-16 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="8123456789">
+                    </div>
+                </div>
+                <button type="submit" id="submitBtn" class="group relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg active:scale-[0.98] overflow-hidden">
+                    <span id="btnText" class="relative z-10 flex items-center justify-center">Daftar Webinar Sekarang <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i></span>
+                </button>
+            </form>
+
+            <!-- Tampilan Setelah Berhasil dengan Link WhatsApp yang Diperbarui -->
+            <div id="messageBox" class="hidden py-6 text-center animate-in fade-in zoom-in duration-500">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-green-100 text-green-600 rounded-full mb-6 shadow-inner">
+                    <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">Pendaftaran Berhasil!</h2>
+                <p class="text-gray-600 mt-3 leading-relaxed">Terima kasih telah mendaftar. Silakan bergabung ke grup koordinasi untuk informasi lebih lanjut:</p>
+                
+                <!-- Box Informasi Link WhatsApp -->
+                <div class="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-2xl">
+                    <p class="text-sm font-bold text-blue-800 mb-3 flex items-center justify-center">
+                        <i data-lucide="link" class="w-4 h-4 mr-2"></i> Grup WhatsApp Peserta
+                    </p>
+                    <a href="https://chat.whatsapp.com/HUu0czMCMfc1wMCAvoZHTU?mode=gi_t" target="_blank" class="inline-flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-md mb-3">
+                        <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i> Gabung Grup WhatsApp
+                    </a>
+                    <p class="text-[10px] text-gray-500 italic">Klik tombol hijau di atas untuk bergabung.</p>
+                </div>
+
+                <div class="mt-8">
+                    <button onclick="window.location.reload()" class="text-sm text-blue-600 font-semibold hover:underline">
+                        Daftarkan peserta lain
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="px-8 pb-8 text-center"><p class="text-xs text-gray-400 italic">© 2026 Matematika Nusantara - Cilacap</p></div>
+    </div>
+    <script>
+        lucide.createIcons();
+
+        const jenjangSelect = document.getElementById('jenjangSelect');
+        const mengajarSelect = document.getElementById('mengajarSelect');
+
+        const teachingData = {
+            'SD/MI': ['Guru Kelas 4', 'Guru Kelas 5', 'Guru Kelas 6'],
+            'SMP/MTs': ['Guru Matematika Kelas 7', 'Guru Matematika Kelas 8', 'Guru Matematika Kelas 9'],
+            'SMA/SMK/MA': ['Guru Matematika Kelas 10', 'Guru Matematika Kelas 11', 'Guru Matematika Kelas 12'],
+            'Lainnya': ['-']
+        };
+
+        jenjangSelect.addEventListener('change', function() {
+            const selectedJenjang = this.value;
+            const options = teachingData[selectedJenjang] || [];
+            mengajarSelect.innerHTML = '<option value="" disabled selected>Pilih Kriteria Mengajar...</option>';
+            options.forEach(opt => {
+                const newOption = document.createElement('option');
+                newOption.value = opt;
+                newOption.textContent = opt;
+                mengajarSelect.appendChild(newOption);
+            });
         });
 
-        function showStatus(msg, classes) {
-            statusMsg.innerText = msg;
-            statusMsg.className = `p-4 rounded mb-10 block ${classes}`;
-            statusMsg.classList.remove('hidden');
+        const DEADLINE_DATE = new Date('2026-02-11T20:00:00+07:00');
+        const registrationForm = document.getElementById('registrationForm');
+        const closedMessage = document.getElementById('closedMessage');
+
+        function checkDeadline() {
+            const now = new Date();
+            if (now > DEADLINE_DATE) {
+                registrationForm.classList.add('hidden');
+                closedMessage.classList.remove('hidden');
+                return true;
+            }
+            return false;
         }
+
+        checkDeadline();
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyBDZAq9LgKs1LzSKjnpdLMMz09MddkUBl9LmcFMnkIankUuaqvMUNDR-pJ91_dL7M/exec';
+        const btn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const msg = document.getElementById('messageBox');
+        const progressBar = document.getElementById('progressBar');
+
+        registrationForm.addEventListener('submit', e => {
+            e.preventDefault();
+            if (checkDeadline()) return;
+
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loading-spinner"></span> Memverifikasi...';
+            progressBar.style.width = '50%';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(registrationForm)})
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        progressBar.style.width = '100%';
+                        setTimeout(() => { 
+                            registrationForm.classList.add('hidden'); 
+                            msg.classList.remove('hidden'); 
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }, 500);
+                    } else {
+                        btn.disabled = false;
+                        btnText.innerHTML = 'Daftar Webinar Sekarang <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>';
+                        progressBar.style.width = '0%';
+                        alert(data.message);
+                        if (data.message.includes('ditutup')) location.reload();
+                    }
+                })
+                .catch(error => {
+                    btn.disabled = false;
+                    btnText.innerHTML = 'Daftar Webinar Sekarang <i data-lucide="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>';
+                    progressBar.style.width = '0%';
+                    alert('Maaf, terjadi kesalahan koneksi.');
+                });
+        });
+
+        const inputs = registrationForm.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const filled = Array.from(inputs).filter(i => i.value !== '').length;
+                progressBar.style.width = ((filled / inputs.length) * 100) + '%';
+            });
+        });
     </script>
 </body>
 </html>
